@@ -1,5 +1,6 @@
 package com.hanuszczak.dagger_hilt.di
 
+import android.app.Application
 import com.hanuszczak.dagger_hilt.data.remote.MyApi
 import com.hanuszczak.dagger_hilt.data.repository.MyRepositoryImpl
 import com.hanuszczak.dagger_hilt.domain.repository.MyRepository
@@ -25,7 +26,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMyRepository(api: MyApi): MyRepository {
-        return MyRepositoryImpl(api)
+    fun provideMyRepository(api: MyApi, app: Application): MyRepository {
+        return MyRepositoryImpl(api, app)
     }
 }
