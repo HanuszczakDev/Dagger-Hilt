@@ -1,6 +1,8 @@
 package com.hanuszczak.dagger_hilt.di
 
 import com.hanuszczak.dagger_hilt.data.remote.MyApi
+import com.hanuszczak.dagger_hilt.data.repository.MyRepositoryImpl
+import com.hanuszczak.dagger_hilt.domain.repository.MyRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,5 +21,11 @@ object AppModule {
             .baseUrl("https://somemockurl.com")
             .build()
             .create(MyApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMyRepository(api: MyApi): MyRepository {
+        return MyRepositoryImpl(api)
     }
 }
